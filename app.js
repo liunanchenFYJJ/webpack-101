@@ -1,4 +1,4 @@
 import log from './src/app/log';
 
-document.write('app');
+// document.write('app');
 log();
