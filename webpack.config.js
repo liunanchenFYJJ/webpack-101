@@ -60,7 +60,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+      filename: 'index.html',
       scriptLoading: 'blocking',
+      chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './app.html',
+      filename: 'app.html',
+      scriptLoading: 'blocking',
+      chunks: ['app'],
     }),
     // new DashboardPlugin(),
   ],
