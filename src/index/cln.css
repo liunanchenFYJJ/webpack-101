@@ -1,0 +1,8 @@
+body {
+  height: 300px;
+  background-color: #bdde87;
+  transform: rotate(90);
+}
+::placeholder {
+  color: red;
+}

@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const DashboardPlugin = require('webpack-dashboard')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
@@ -13,6 +14,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     // publicPath: './cln',
     clean: true,
+    chunkFilename: '[id].js',
   },
   devServer: {
     port: 3000,
@@ -21,8 +23,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(less|css)$/,
+        use: [MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          'postcss-loader',
+          'less-loader',
+        ],
+        // use: ['style-loader', 'css-loader'],
         // exclude: /node_modules/,
       },
       {
@@ -71,5 +83,9 @@ module.exports = {
       chunks: ['app'],
     }),
     // new DashboardPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
 }
