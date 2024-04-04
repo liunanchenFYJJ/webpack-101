@@ -4,13 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  mode: 'development',
+  // mode: 'production',
   entry: {
     main: './index.js',
     app: './app.js',
     // vendor: ['lodash'],
   },
   output: {
-    filename: '[name].js',
+    filename: '[name]@[chunkhash].js',
     path: path.join(__dirname, 'dist'),
     // publicPath: './cln',
     clean: true,
@@ -18,7 +20,8 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    static: '/dist/'
+    static: '/dist/',
+    // hot: true,
   },
   module: {
     rules: [
@@ -39,8 +42,22 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: ['babel-loader'],
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    modules: false,
+                  },
+                ],
+              ],
+            },
+          },
+        ],
       },
     ],
   },
@@ -68,7 +85,6 @@ module.exports = {
       // },
     },
   },
-  mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
