@@ -3,15 +3,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const DashboardPlugin = require('webpack-dashboard')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const arr = ['index', 'app','temp', 'less-code'];
+const entryObj = arr.reduce((pre, curr) => {
+  pre[curr] = `./${curr}.js`;
+  return pre;
+}, {})
+const htmlArr = arr.map(htmlName => {
+  return new HtmlWebpackPlugin({
+    template: `./${htmlName}.html`,
+    filename: `${htmlName}.html`,
+    scriptLoading: 'blocking',
+    chunks: [htmlName],
+  })
+})
+
 module.exports = {
   mode: 'development',
   // mode: 'production',
-  entry: {
-    main: './index.js',
-    app: './app.js',
-    temp: './temp.js',
+  entry: Object.assign(entryObj, {
     // vendor: ['lodash'],
-  },
+  }),
   devtool: 'source-map',
   output: {
     filename: '[name]@[chunkhash].js',
@@ -88,24 +99,8 @@ module.exports = {
     },
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: 'index.html',
-      scriptLoading: 'blocking',
-      chunks: ['main'],
-    }),
-    new HtmlWebpackPlugin({
-      template: './app.html',
-      filename: 'app.html',
-      scriptLoading: 'blocking',
-      chunks: ['app'],
-    }),
-    new HtmlWebpackPlugin({
-      template: './temp.html',
-      filename: 'temp.html',
-      scriptLoading: 'blocking',
-      chunks: ['temp'],
-    }),
+    ...htmlArr,
+
     // new DashboardPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
