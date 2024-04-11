@@ -9,8 +9,10 @@ module.exports = {
   entry: {
     main: './index.js',
     app: './app.js',
+    temp: './temp.js',
     // vendor: ['lodash'],
   },
+  devtool: 'source-map',
   output: {
     filename: '[name]@[chunkhash].js',
     path: path.join(__dirname, 'dist'),
@@ -19,7 +21,7 @@ module.exports = {
     chunkFilename: '[id].js',
   },
   devServer: {
-    port: 3000,
+    port: 3001,
     static: '/dist/',
     // hot: true,
   },
@@ -97,6 +99,12 @@ module.exports = {
       filename: 'app.html',
       scriptLoading: 'blocking',
       chunks: ['app'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './temp.html',
+      filename: 'temp.html',
+      scriptLoading: 'blocking',
+      chunks: ['temp'],
     }),
     // new DashboardPlugin(),
     new MiniCssExtractPlugin({
