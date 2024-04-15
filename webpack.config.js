@@ -19,6 +19,7 @@ const htmlArr = arr.map(htmlName => {
 
 module.exports = {
   mode: 'development',
+  // target: 'node',
   // mode: 'production',
   entry: Object.assign(entryObj, {
     // vendor: ['lodash'],
@@ -72,7 +73,21 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false,
+          },
+        },
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   optimization: {
     // splitChunks默认值
