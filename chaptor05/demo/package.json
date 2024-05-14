@@ -1,0 +1,30 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack",
+    "serve": "npx webpack serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.1",
+    "html-webpack-plugin": "^5.6.0",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "postcss": "^8.4.38",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.5.13",
+    "sass": "^1.77.1",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "stylelint": "^16.5.0",
+    "stylelint-webpack-plugin": "^5.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
