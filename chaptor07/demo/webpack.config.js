@@ -5,8 +5,8 @@ const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  // mode: 'production',
+  // mode: 'development',
+  mode: 'production',
   // devtool: 'source-map',
   devtool: 'nosources-source-map',
   // devtool: 'hidden-source-map',
@@ -27,8 +27,8 @@ module.exports = {
     splitChunks: {
       chunks: 'all', // 默认值是async，只对异步模块生效；all就是对所有模块生效
     },
-    minimize: true,
-    minimizer: [new TerserPlugin()],
+    // minimize: true,
+    // minimizer: [new TerserPlugin()],
   },
   plugins: [
     new HtmlPlugin(),
@@ -42,7 +42,19 @@ module.exports = {
     })
   ],
   module: {
+    noParse: /lodash|jquery/,
     rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { modules: false }]
+            ],
+          },
+        },
+      },
       {
         test: /\.css$/,
         // use: ['style-loader', 'css-loader'], // 1. 生成<style>标签插入
