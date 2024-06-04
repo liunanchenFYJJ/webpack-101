@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'antd'
+import TextAreaCounter from './TextAreaCounter';
 
 function App() {
   return (
     <div className="App">
+      <TextAreaCounter defaultVal={'10'}></TextAreaCounter>
+      <Button type='primary'>Button</Button>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
