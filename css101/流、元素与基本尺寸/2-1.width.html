@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .bg {
+    background-color: lightblue;
+  }
+
+  .float {
+    width: fit-content;
+    background-color: lightcoral;
+    margin: 0 auto;
+  }
+
+  .width {
+    width: 100px;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  /* .child {
+    display: inline-block;
+  } */
+</style>
+<body>
+  <!-- 1.fill-available -->
+  <!-- <div class="bg">width占一行; fill-available</div> -->
+  <!-- 2.fit-content -->
+  <!-- <div class="float">width内容占据内部宽度；fit-content; 更长始终居中</div> -->
+  <!-- 3.min-content -->
+  <!-- 中文 -->
+  <!-- <div class="width">我也是大舅分开始减肥老师说对方老师的雷锋精神地方</div> -->
+  <!-- 英文 -->
+  <!-- <div class="width">sljviasdfjsldfjlsjfd-ldsjlfjlsfjlsd-fksdfjlsjfldsfdsfjlsdjl</div> -->
+  <!-- 4.max-content -->
+  <div class="width bg nowrap">
+    <span class="child">我也是大舅分开始减肥老师说对方老师的雷锋精神地方</span>
+  </div>
+</body>
+</html>
